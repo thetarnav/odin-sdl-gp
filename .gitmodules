@@ -1,0 +1,3 @@
+[submodule "SDL_gp"]
+	path = SDL_gp
+	url = git@github.com:n67094/SDL_gp.git
