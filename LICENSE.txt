@@ -1,4 +1,4 @@
-# License
+# MIT License
 
 Copyright (c) 2026 nsix. All rights reserved. (n67094@proton.me)
 
