@@ -2,6 +2,6 @@
 
 Odin bindings to https://github.com/n67094/SDL_gp
 
-# License
+## License
 
 [MIT License](./LICENSE.txt)
