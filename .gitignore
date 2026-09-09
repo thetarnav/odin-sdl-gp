@@ -2,5 +2,5 @@
 /bin
 /include
 /share
-/build
+/.build
 ols.json
