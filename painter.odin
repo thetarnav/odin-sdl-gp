@@ -79,7 +79,7 @@ Desc :: struct {
 foreign lib {
 	// Setup  context. Returns false if setup failed, use
 	// GetLastError() to get more information about the error.
-	Setup :: proc (^Desc) -> bool ---
+	Setup :: proc (#by_ptr Desc) -> bool ---
 
 	// Shutdown  context.
 	Shutdown :: proc () ---
@@ -196,40 +196,40 @@ foreign lib {
 	Clear :: proc () ---
 
 	// Draw any primitive.
-	Draw :: proc (primitive_type: PrimitiveType, vertices: ^Vertex, vertices_count: u32) ---
+	Draw :: proc (primitive_type: PrimitiveType, vertices: [^]Vertex, #any_int vertices_count: u32) ---
 
 	// Draw points in batch.
-	DrawPoints :: proc (points: ^Point, count: u32) ---
+	DrawPoints :: proc (points: [^]Point, #any_int count: u32) ---
 
 	// Draw a single point.
 	DrawPoint :: proc (point: Point) ---
 
 	// Draw lines in batch.
-	DrawLines :: proc (lines: ^Line, count: u32) ---
+	DrawLines :: proc (lines: [^]Line, #any_int count: u32) ---
 
 	// Draw a single line.
 	DrawLine :: proc (line: Line) ---
 
 	// Draw a stip of lines.
-	DrawLinesStrip :: proc (points: ^Vec2, count: u32) ---
+	DrawLinesStrip :: proc (points: [^]Vec2, #any_int count: u32) ---
 
 	// Draw triangles in batch.
-	DrawFilledTriangles :: proc (triangles: ^Triangle, count: u32) ---
+	DrawFilledTriangles :: proc (triangles: [^]Triangle, #any_int count: u32) ---
 
 	// Draw a single triangle.
 	DrawFilledTriangle :: proc (triangle: Triangle) ---
 
 	// Draw a strip of triangles.
-	DrawFilledTrianglesStrip :: proc (points: ^Vec2, count: u32) ---
+	DrawFilledTrianglesStrip :: proc (points: [^]Vec2, #any_int count: u32) ---
 
 	// Draw rectangles in batch.
-	DrawFilledRects :: proc (rects: ^Rect, count: u32) ---
+	DrawFilledRects :: proc (rects: [^]Rect, count: u32) ---
 
 	// Draw a single rectangle.
 	DrawFilledRect :: proc (rect: Rect) ---
 
 	// Draw textured rectangles in batch.
-	DrawTexturedRects :: proc (channel: i32, rects: ^TexturedRect, count: u32) ---
+	DrawTexturedRects :: proc (channel: i32, rects: [^]TexturedRect, #any_int count: u32) ---
 
 	// Draw a single textured rectangle.
 	DrawTexturedRect :: proc (channel: i32, rect: TexturedRect) ---
