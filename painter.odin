@@ -4,68 +4,23 @@ package sdl_gp
 
 import sdl "vendor:sdl3"
 
-UniformSlot :: enum u32 {
-	VS = 0,
-	FS = 1,
-}
+UniformSlot :: enum u32 {VS, FS}
 
 Vec2  :: [2]f32
 Point :: Vec2
 
 Line     :: struct {a, b: Point}
 Triangle :: struct {a, b, c: Point}
-ISize    :: struct {w, h: i32}
-IRect    :: struct {x, y, w, h: i32}
 Rect     :: struct {x, y, w, h: f32}
 
 TexturedRect :: struct {
 	dst, src: Rect,
 }
 
-Mat2x3 :: struct {
-	m00, m01, m02: f32,
-	m10, m11, m12: f32,
-}
-
 Vertex :: struct {
 	position: Vec2,
 	texcoord: Vec2,
 	color:    sdl.Color,
-}
-
-UniformData :: struct #raw_union {
-	floats: [8]f32,
-	bytes:  [32]byte,
-}
-
-Uniform :: struct {
-	vs_size: u16,
-	fs_size: u16,
-	data:    UniformData,
-}
-
-TextureUniform :: struct {
-	count:    u32,
-	images:   [4]Image,
-	samplers: [4]^sdl.GPUSampler,
-}
-
-State :: struct {
-	projection:   Mat2x3,
-	transform:    Mat2x3,
-	mvp:          Mat2x3,
-	texture:      TextureUniform,
-	uniform:      Uniform,
-	pipeline:     Pipeline,
-	blend_mode:   BlendMode,
-	frame_size:   ISize,
-	viewport:     IRect,
-	scissor:      IRect,
-	color:        sdl.Color,
-	thickness:    f32,
-	base_uniform: u32,
-	base_vertex:  u32,
-	base_command: u32,
 }
 
 Desc :: struct {
@@ -99,7 +54,7 @@ foreign lib {
 	End :: proc () ---
 
 	// Set the coordinate space boundaries in the current viewport.
-	SetProjection :: proc (left: f32, right: f32, bottom: f32, top: f32) ---
+	SetProjection :: proc (left, right, bottom, top: f32) ---
 
 	// Reset the projection to the default coordinate space, which is the
 	// coordinate of the current viewport.
@@ -116,19 +71,19 @@ foreign lib {
 	ResetTransform :: proc () ---
 
 	// Translates the 2D coordinates space.
-	Translate :: proc (x: f32, y: f32) ---
+	Translate :: proc (x, y: f32) ---
 
 	// Rotates the 2D coordinate space around the origin.
 	Rotate :: proc (angle: f32) ---
 
 	// Rotates the 2D coordinate space around a point.
-	RotateAt :: proc (angle: f32, ax: f32, ay: f32) ---
+	RotateAt :: proc (angle, ax, ay: f32) ---
 
 	// Scales the 2D coordinate space around the origin.
-	Scale :: proc (sx: f32, sy: f32) ---
+	Scale :: proc (sx, sy: f32) ---
 
 	// Scales the 2D coordinate space around a point.
-	ScaleAt :: proc (sx: f32, sy: f32, ax: f32, ay: f32) ---
+	ScaleAt :: proc (sx, sy, ax, ay: f32) ---
 
 	// Set the current graphics pipeline.
 	SetPipeline :: proc (pipeline: Pipeline) ---
@@ -178,13 +133,13 @@ foreign lib {
 	ResetSampler :: proc (channel: i32) ---
 
 	// Set the screen are to draw to.
-	Viewport :: proc (x: i32, y: i32, w: i32, h: i32) ---
+	Viewport :: proc (x, y, w, h: i32) ---
 
 	// Reset the viewport to default (0, 0, width, height).
 	ResetViewport :: proc () ---
 
 	// Set the clipping rectangle in the viewport.
-	Scissor :: proc (x: i32, y: i32, w: i32, h: i32) ---
+	Scissor :: proc (x, y, w, h: i32) ---
 
 	// Reset the clipping rectangle to default (viewport bounds).
 	ResetScissor :: proc () ---
