@@ -4,8 +4,6 @@ package sdl_gp
 
 import sdl "vendor:sdl3"
 
-UniformSlot :: enum u32 {VS, FS}
-
 Vec2  :: [2]f32
 Point :: Vec2
 
